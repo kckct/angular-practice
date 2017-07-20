@@ -28,8 +28,8 @@ describe('TitleComponent', () => {
     expect(component.getTitle()).toBe('todos');
   });
 
-  it(`should use title property in HTML`, () => {
-    component.title = 'fake';
+  it(`should use getTitle() function in HTML`, () => {
+    spyOn(component, 'getTitle').and.returnValue('fake');
     fixture.detectChanges();
 
     const element = fixture.debugElement.query(By.css('h1')).nativeElement;
