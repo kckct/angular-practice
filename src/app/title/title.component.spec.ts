@@ -22,4 +22,8 @@ describe('TitleComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it(`should have as title 'todos'`, () => {
+    expect(component.title).toBe('todos');
+  });
 });
