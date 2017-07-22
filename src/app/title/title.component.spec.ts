@@ -29,10 +29,8 @@ describe('TitleComponent', () => {
   });
 
   it(`should use getTitle() function in HTML`, () => {
-    spyOn(component, 'getTitle').and.returnValue('fake');
+    spyOn(component, 'getTitle');
     fixture.detectChanges();
-
-    const element = fixture.debugElement.query(By.css('h1')).nativeElement;
-    expect(element.textContent).toBe('fake');
+    expect(component.getTitle).toHaveBeenCalled();
   });
 });
