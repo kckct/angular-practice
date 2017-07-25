@@ -1,22 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TitleComponent } from './title.component';
-import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 describe('TitleComponent', () => {
-  let component: TitleComponent;
   let fixture: ComponentFixture<TitleComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TitleComponent ]
-    })
-    .compileComponents();
-  }));
+  let component: TitleComponent;
+  let debugElement: DebugElement;
+  let target: TitleComponent;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        TitleComponent
+      ]
+    });
+
     fixture = TestBed.createComponent(TitleComponent);
     component = fixture.componentInstance;
+    debugElement = fixture.debugElement;
+    target = new TitleComponent();
     fixture.detectChanges();
   });
 
@@ -24,13 +26,15 @@ describe('TitleComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'todos'`, () => {
-    expect(component.getTitle()).toBe('todos');
-  });
+  describe('Interpolation Binding: field', () => {
+    it(`should use getTitle() function in HTML`, () => {
+      spyOn(component, 'getTitle');
+      fixture.detectChanges();
+      expect(component.getTitle).toHaveBeenCalled();
+    });
 
-  it(`should use getTitle() function in HTML`, () => {
-    spyOn(component, 'getTitle');
-    fixture.detectChanges();
-    expect(component.getTitle).toHaveBeenCalled();
+    it(`should have title as 'todos' in class`, () => {
+      expect(target.getTitle()).toBe('todos');
+    });
   });
 });
