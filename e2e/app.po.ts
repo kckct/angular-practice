@@ -8,4 +8,8 @@ export class AngularPracticePage {
   getTodos() {
     return element(by.css('app-root h1')).getText();
   }
+
+  getPlaceHolder() {
+    return element(by.css('.new-todo')).getAttribute('placeholder');
+  }
 }
